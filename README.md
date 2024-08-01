@@ -8,6 +8,9 @@ Extremely Rough outline of what we could possibly do with a workflow manager
 2. run this command "python3 workflow_compose.py"
 3. you can change what tasks you want to be used in the workflow inside the variables.txt
 
+
+In theory we can feed this program several tasks listed in sequential order in  variables.txt to automatically compose the workflow wdl for us. 
+
 This is still rough around the edges! 
 adding additional flags dynamically is not working yet
 
