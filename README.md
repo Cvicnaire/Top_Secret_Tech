@@ -19,6 +19,6 @@ This is still rough around the edges!
 Known Issues:
 
 1. adding additional flags dynamically is not working yet
-2. submitting the assembled workflows is not working yet
+2. submitting the assembled workflows is not working yet, wil create the workflow wdls though
 
 
