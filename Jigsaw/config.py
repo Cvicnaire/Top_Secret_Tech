@@ -1,1 +1,11 @@
+import os
+
+workflow_template_file = "templates/workflow_template.wdl"
+variables_file = "variables.txt"
+workflow_output_dir = "workflows"
+json_output_dir = "json_inputs"
+
+# Ensure the directories exist
+os.makedirs(workflow_output_dir, exist_ok=True)
+os.makedirs(json_output_dir, exist_ok=True)
 
