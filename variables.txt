@@ -1,0 +1,3 @@
+task_files=tasks/fastqc_task.wdl
+fastqc_flags=-t 4
+outdirPath=output
