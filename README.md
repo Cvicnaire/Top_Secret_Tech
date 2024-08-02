@@ -1,5 +1,8 @@
 # Top_Secret_Tech_Project: Jigsaw
 
+
+![image](https://github.com/user-attachments/assets/bf426e1c-0ecd-4dce-937f-e3871836a2de)
+
 Extremely Rough outline of what we could possibly do with a workflow manager
 
 How it works:
