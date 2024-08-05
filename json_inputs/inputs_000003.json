@@ -1,0 +1,5 @@
+{
+    "FastQC.fastqFile": "Filelol",
+    "FastQC.outdirPath": "String",
+    "FastQC.dockerImage": "String"
+}

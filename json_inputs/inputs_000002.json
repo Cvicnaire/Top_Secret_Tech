@@ -1,0 +1,5 @@
+{
+    "FastQC.('File', 'fastqFile')": null,
+    "FastQC.('String', 'outdirPath')": null,
+    "FastQC.('String', 'dockerImage')": null
+}

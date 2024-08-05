@@ -6,7 +6,7 @@ import shutil
 import os
 from utils.file_operations import read_task
 from utils.id_generator import get_next_unique_id
-from utils.submission import submit_workflow
+# from utils.submission import submit_workflow
 
 def extract_task_io(task_content):
     """Function to extract task inputs and outputs."""
@@ -14,13 +14,10 @@ def extract_task_io(task_content):
     outputs = re.findall(r"output {([\s\S]*?)}", task_content)
     return inputs, outputs
 
-
 def extract_task_name(task_content):
     """Function to extract task name."""
     name = re.findall(r"task (\w+)", task_content)
     return name[0] if name else "UnknownTask"
-
-
 
 def parse_task_inputs(inputs):
     """Function to parse task inputs."""
@@ -28,10 +25,9 @@ def parse_task_inputs(inputs):
     for input_block in inputs:
         for line in input_block.splitlines():
             if line.strip():
-                input_name = re.findall(r"(\w+)\s+(\w+)", line.strip())[0]
-                task_inputs[input_name] = None  # Default value for optional inputs
+                input_type, input_name = re.findall(r"(\w+)\s+(\w+)", line.strip())[0]
+                task_inputs[input_name] = input_type  # Use input type for correct WDL type
     return task_inputs
-
 
 def assemble_workflow(variables, workflow_template_file, workflow_output_dir, json_output_dir):
     """Function to assemble the workflow."""
@@ -81,16 +77,15 @@ def assemble_workflow(variables, workflow_template_file, workflow_output_dir, js
     move_files(json_output_file, json_output_dir)
 
     print(f"Workflow assembled and written to {os.path.join(workflow_output_dir, output_workflow_file)}")
-
     print(f"Inputs JSON written to {os.path.join(json_output_dir, json_output_file)}")
 
-    submit_workflow()
+    # submit_workflow()
 
 def generate_workflow_inputs(task_inputs):
     """Function to generate workflow inputs."""
     workflow_inputs = ""
-    for input_name in task_inputs.keys():
-        workflow_inputs += f"    {input_name}? {input_name}\n"
+    for input_name, input_type in task_inputs.items():
+        workflow_inputs += f"    {input_type}? {input_name}\n"
     return workflow_inputs
 
 def generate_workflow_outputs(outputs, task_name):
