@@ -4,16 +4,16 @@ workflow ComposedWorkflow {
     input {
     ${workflow_inputs}
     }
-    # task calls
 
+    # Task calls
     ${task_calls}
-    # task definitions
 
-    ${task_definitions}
-
-
-    # metadata(work in progress)
     output {
     ${workflow_outputs}
     }
 }
+
+# Task Definitions
+${task_definitions}
+
+# Metadata (To be added as needed)

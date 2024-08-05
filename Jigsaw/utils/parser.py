@@ -85,7 +85,7 @@ def generate_workflow_inputs(task_inputs):
     """Function to generate workflow inputs."""
     workflow_inputs = ""
     for input_name, input_type in task_inputs.items():
-        workflow_inputs += f"    {input_type}? {input_name}\n"
+        workflow_inputs += f"    {input_type} {input_name}\n"
     return workflow_inputs
 
 def generate_workflow_outputs(outputs, task_name):
@@ -101,11 +101,12 @@ def generate_workflow_outputs(outputs, task_name):
 def generate_task_calls(task_inputs, variables, task_name):
     """Function to generate task calls."""
     task_calls = f"    call {task_name} {{\n"
+    task_calls += "        input:\n"
     for input_name in task_inputs.keys():
         if input_name in variables:
-            task_calls += f"        {input_name} = \"{variables[input_name]}\"\n"
+            task_calls += f"            {input_name} = \"{variables[input_name]}\",\n"
         else:
-            task_calls += f"        {input_name} = {input_name}\n"
+            task_calls += f"            {input_name} = {input_name},\n"
     task_calls += "    }\n"
     return task_calls
 

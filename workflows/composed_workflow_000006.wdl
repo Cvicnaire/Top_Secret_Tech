@@ -2,21 +2,26 @@ version 1.0
 
 workflow ComposedWorkflow {
     input {
-    File? fastqFile
+        File? fastqFile
     String? outdirPath
     String? dockerImage
     }
-    # task calls
 
+    # Task calls
     call FastQC {
-    input:
-        fastqFile = fastqFile
-        outdirPath = outdirPath
-        dockerImage = dockerImage
+        input:
+            fastqFile = fastqFile
+            outdirPath = "output"
+            dockerImage = dockerImage
     }
-    # task definitions
 
-    task FastQC {
+    output {
+        File? fastqc_report = FastQC.fastqc_report
+    }
+}
+
+# Task Definitions
+task FastQC {
     input {
         File fastqFile
         String outdirPath = "."
@@ -36,9 +41,4 @@ workflow ComposedWorkflow {
     }
 }
 
-
-    # metadata(work in progress)
-    output {
-    File? fastqc_report = FastQC.fastqc_report
-    }
-}
+# Metadata (To be added as needed)
