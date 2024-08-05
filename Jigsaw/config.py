@@ -1,3 +1,4 @@
+"""config.py: Configuration file for Jigsaw"""
 import os
 
 workflow_template_file = "templates/workflow_template.wdl"
