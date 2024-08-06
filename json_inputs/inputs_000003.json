@@ -1,5 +1,0 @@
-{
-    "ComposedWorkflow.fastqFile": "/projectnb/bubhub/users/camv/samples/ADrep1subsample_R1.fastq.gz",
-    "ComposedWorkflow.outdirPath": ".",
-    "ComposedWorkflow.dockerImage": "quay.io/biocontainers/fastqc:0.12.1--hdfd78af_0"
-}

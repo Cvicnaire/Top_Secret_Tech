@@ -29,11 +29,13 @@ def parse_task_inputs(inputs):
                 task_inputs[input_name] = input_type  # Use input type for correct WDL type
     return task_inputs
 
+import variables  # Import the variables from variables.py
+
 def assemble_workflow(variables, workflow_template_file, workflow_output_dir, json_output_dir):
     """Function to assemble the workflow."""
-    task_files = variables['task_files'].split(',')
-    fastqc_flags = variables.get('fastqc_flags', "")
-    outdirPath = variables.get('outdirPath', ".")
+    task_files = variables.TASK_FILES
+    fastqc_flags = variables.FASTQC_FLAGS
+    outdirPath = variables.OUTDIR_PATH
 
     task_definitions = ""
     workflow_inputs = ""
@@ -46,7 +48,7 @@ def assemble_workflow(variables, workflow_template_file, workflow_output_dir, js
 
         if "task FastQC" in task_content:
             task_content = task_content.replace("${fastqc_flags}", fastqc_flags)
-        # where i can add other flags from other packages if needed.
+
         task_definitions += task_content + "\n\n"
 
         inputs, outputs = extract_task_io(task_content)
@@ -81,6 +83,10 @@ def assemble_workflow(variables, workflow_template_file, workflow_output_dir, js
 
     # submit_workflow()
 
+#
+
+
+
 def generate_workflow_inputs(task_inputs):
     """Function to generate workflow inputs."""
     workflow_inputs = ""
@@ -103,12 +109,13 @@ def generate_task_calls(task_inputs, variables, task_name):
     task_calls = f"    call {task_name} {{\n"
     task_calls += "        input:\n"
     for input_name in task_inputs.keys():
-        if input_name in variables:
-            task_calls += f"            {input_name} = \"{variables[input_name]}\",\n"
+        if hasattr(variables, input_name):
+            task_calls += f"            {input_name} = \"{getattr(variables, input_name)}\",\n"
         else:
             task_calls += f"            {input_name} = {input_name},\n"
     task_calls += "    }\n"
     return task_calls
+
 
 def read_workflow_template(workflow_template_file):
     """Function to read the workflow template."""

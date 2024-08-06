@@ -11,7 +11,7 @@ This is python program that is designed to assemble workflows based on the given
 
 ** How to use:
 1. clone repo
-2. run this command "python3 workflow_compose.py"
+2. run this command "python3 main.py", be sure to be in the jigsaw directory 
 3. you can change what tasks you want to be used in the workflow inside the variables.txt
 
 

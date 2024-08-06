@@ -2,7 +2,7 @@
 import os
 
 workflow_template_file = "workflow_template.wdl"
-variables_file = "variables.txt"
+variables_file = "variables.py"
 workflow_output_dir = "workflows"
 json_output_dir = "json_inputs"
 
