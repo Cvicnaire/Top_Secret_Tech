@@ -3,7 +3,7 @@ import os
 
 workflow_template_file = "workflow_template.wdl"
 variables_file = "variables.py"
-workflow_output_dir = "workflows"
+workflow_output_dir = "composed_workflows"
 json_output_dir = "json_inputs"
 
 # Ensure the directories exist
