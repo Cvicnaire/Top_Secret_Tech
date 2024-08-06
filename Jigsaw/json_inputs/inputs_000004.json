@@ -1,0 +1,5 @@
+{
+    "ComposedWorkflow.fastqFile": "File",
+    "ComposedWorkflow.outdirPath": "String",
+    "ComposedWorkflow.dockerImage": "String"
+}

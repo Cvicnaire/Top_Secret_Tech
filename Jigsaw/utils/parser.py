@@ -59,7 +59,10 @@ def assemble_workflow(variables, workflow_template_file, workflow_output_dir, js
         workflow_inputs += generate_workflow_inputs(task_inputs)
         workflow_outputs += generate_workflow_outputs(outputs, task_name)
         task_calls += generate_task_calls(task_inputs, variables, task_name)
-        all_inputs.update({f"{task_name}.{key}": value for key, value in task_inputs.items()})
+        
+        
+         # Update input names to use ComposedWorkflow prefix
+        all_inputs.update({f"ComposedWorkflow.{key}": value for key, value in task_inputs.items()})
 
     workflow_template = read_workflow_template(workflow_template_file)
     composed_workflow = replace_placeholders(workflow_template,
