@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Execution Form</title>
+    <script>
+        function showParameterOptions() {
+            const selectedTask = document.getElementById("Task_1").value;
+            document.getElementById("parameterSection").style.display = selectedTask ? "block" : "none";
+        }
+    </script>
+</head>
+<body>
+    <h1>Workflow Execution Form</h1>
+    <form action="/submit" method="post">
+    
+        <label for="Analysis_Type">Analysis Type:</label><br>
+        <select id="Analysis_Type" name="Analysis_Type" required>
+            <option value="">Select an Analysis</option>
+            {% for analysis in workflows %}
+                <option value="{{ analysis }}">{{ analysis }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="Task_1">Task 1:</label><br>
+        <select id="Task_1" name="value2" required onchange="showParameterOptions()">
+            <option value="">Select a task</option>
+            {% for task in tasks %}
+                <option value="{{ task }}">{{ task }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <div id="parameterSection" style="display:none;">
+            <label for="Parameters">Parameters:</label><br>
+            <input type="checkbox" id="defaultParams" name="parameters" value="default"> Use Default Parameters<br>
+            {% for param in parameters %}
+                <input type="checkbox" id="{{ param }}" name="parameters" value="{{ param }}"> {{ param }}<br>
+            {% endfor %}
+            <br>
+        </div>
+
+        <input type="submit" value="Send Request">
+    </form>
+</body>
+</html>
