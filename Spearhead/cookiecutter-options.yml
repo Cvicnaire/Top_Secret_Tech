@@ -1,0 +1,9 @@
+default_context:
+    project_name: "Spearhead"
+    app_name: "app"
+    python_version: "3.8"
+    admin_user_username: "Cvicnaire"
+    admin_user_email: "camv@bu.edu"
+    admin_user_password: "89Summer"
+    use_celery: "no"
+    wsgi_server: "none"
