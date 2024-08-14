@@ -1,0 +1,153 @@
+openapi: 3.0.0
+
+info:
+  title: Jigsaw API
+  version: 1.0.0
+  description: API for the workflow orchestrator known as Jigsaw
+
+paths:
+  /available-workflows:
+    post:
+      summary: Returns available workflows to the UI
+      responses:
+        '200':
+          description: List of available workflows
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    workflow_id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+
+  /process-requests:
+    post:
+      summary: Process form data from the UI
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                age:
+                  type: integer
+      responses:
+        '200':
+          description: Form data processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Form data processed successfully"
+        '400':
+          description: Invalid form data
+
+  /ping-hippo-avail-resources:
+    get:
+      summary: Ping resource abstraction application to gather available resources to complete user request
+      responses:
+        '200':
+          description: Available resources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  resources:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        resource_id:
+                          type: string
+                        status:
+                          type: string
+
+  /ping-hippo-missing-resources:
+    get:
+      summary: Ping resource abstraction application to determine how to create missing resources
+      responses:
+        '200':
+          description: Instructions to create missing resources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  instructions:
+                    type: array
+                    items:
+                      type: string
+
+  /ping-hippo-notify:
+    post:
+      summary: Notify the resource abstraction application that the workflow is completed and update metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workflow_id:
+                  type: string
+                status:
+                  type: string
+                metadata:
+                  type: object
+      responses:
+        '200':
+          description: Notification successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Workflow completion notified successfully"
+
+  /ping-workflow-manager:
+    post:
+      summary: Jigsaw submits workflows to the resource manager
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workflow_id:
+                  type: string
+                parameters:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Workflow submitted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Workflow submitted successfully"
+        '400':
+          description: Invalid workflow submission
+
