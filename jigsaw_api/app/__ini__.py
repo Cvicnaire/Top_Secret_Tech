@@ -1,17 +1,8 @@
-from flask import Flask
-import connexion
+""" Top Level Package for jigsaw"""
 
-def create_app():
-    # init the connexion application
-    app = connexion.App(__name__, specification_dir = '../openapi/')
+__author__ = """ Cameron Vicnaire"""
 
-    # load the open api spec
-    app.add_api('openapi.yml')
+__email__  = """camv@bu.edu"""
 
-    # get the flask app instance
+__version__ = '0.1.0'
 
-    flask_app = app.app
-
-    flask_app.config.from_object('app.config.Config')
-
-    return flask_app
