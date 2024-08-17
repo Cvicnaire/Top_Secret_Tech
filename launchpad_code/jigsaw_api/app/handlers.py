@@ -52,7 +52,7 @@ def no_implementation(request: OpenAPIRequest) -> OpenAPIResponse:
 def ConcreteEndpointHandler(EndpointHandler):
 
     def available_workflows(self, request: OpenAPIRequest) -> OpenAPIResponse:
-        # Logic Implementation
+        # Logic Implementation, this needs to be data driven I need to develop a function that will query the available workflows.
 
         return OpenAPIResponse(data = {"workflows":['wgbs', 'RNA-Seq']}, status_code = 200)
 
