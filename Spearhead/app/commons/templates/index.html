@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Site</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Data Helix</h1>
+        <h2> A Biological Data Analysis and Management Platform<h2>
+
+        <nav>
+            <ul id="navigation">
+                {% for item in navigation %}
+                    <li>
+                        <a href="{{ url_for(item.endpoint) }}" class="{{ 'active' if request.endpoint == item.endpoint else '' }}">
+                            {{ item.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+
+    <div id="content">
+        {% block content %}
+        <!-- Child templates will insert content here -->
+        {% endblock %}
+    </div>
+</body>
+</html>

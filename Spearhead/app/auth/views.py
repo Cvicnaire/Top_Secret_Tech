@@ -185,9 +185,9 @@ def check_if_token_revoked(jwt_headers, jwt_payload):
     return is_token_revoked(jwt_payload)
 
 
-@blueprint.before_app_first_request
-def register_views():
-    apispec.spec.path(view=login, app=app)
-    apispec.spec.path(view=refresh, app=app)
-    apispec.spec.path(view=revoke_access_token, app=app)
-    apispec.spec.path(view=revoke_refresh_token, app=app)
+#@blueprint.before_app_first_request
+#def register_views():
+    #apispec.spec.path(view=login, app=app)
+    #apispec.spec.path(view=refresh, app=app)
+   # apispec.spec.path(view=revoke_access_token, app=app)
+   # apispec.spec.path(view=revoke_refresh_token, app=app)

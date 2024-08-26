@@ -2,6 +2,7 @@ from flask import Flask
 from app import api
 from app import auth
 from app import manage
+from app.web import web_blueprint
 from app.extensions import apispec
 from app.extensions import db
 from app.extensions import jwt
@@ -12,6 +13,7 @@ def create_app(testing=False):
     """Application factory, used to create application"""
     app = Flask("app")
     app.config.from_object("app.config")
+    app.config['SECRET_KET'] = 'YO'
 
     if testing is True:
         app.config["TESTING"] = True
@@ -59,3 +61,5 @@ def register_blueprints(app):
     """Register all blueprints for application"""
     app.register_blueprint(auth.views.blueprint)
     app.register_blueprint(api.views.blueprint)
+    app.register_blueprint(web_blueprint)
+    
