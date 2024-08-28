@@ -3,7 +3,7 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
 
 class ContactForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired(), Length(min=2, max=50)])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    name = StringField('Workflow Type', validators=[DataRequired(), Length(min=2, max=50)])
+    email = StringField('', validators=[DataRequired(), Email()])
     message = StringField('Message', validators=[DataRequired(), Length(min=10)])
     submit = SubmitField('Send')

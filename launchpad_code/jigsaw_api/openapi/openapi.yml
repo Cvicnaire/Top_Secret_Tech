@@ -5,7 +5,56 @@ info:
   version: 1.0.0
   description: API for the workflow orchestrator known as Jigsaw
 
+
+
 paths:
+
+# Path to handle form data submission from the ui
+  /process-requests:
+  post:
+    summary: Process form data from the UI
+    description: 
+      This endpoint processes form data, which includes a variable number of tasks depending on workflow type.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              workflow_type:
+                type: string
+                description: Type of workflow to process
+              additionalProperties: 
+                type: string
+                description: Form data for each task depending on the workflow
+                required:
+                - workflow_type
+    responses:
+    '200':
+      description: Form data processed successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Form data processed successfully"
+    '400':
+      description: Invalid form data submission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Invalid form data submission"
+
+
+
+# available-workflows endpoint, this will
   /available-workflows:
     post:
       summary: Returns available workflows to the UI
@@ -26,36 +75,7 @@ paths:
                     description:
                       type: string
 
-  /process-requests:
-    post:
-      summary: Process form data from the UI
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                email:
-                  type: string
-                  format: email
-                age:
-                  type: integer
-      responses:
-        '200':
-          description: Form data processed successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Form data processed successfully"
-        '400':
-          description: Invalid form data
+
 
   /ping-hippo-avail-resources:
     get:

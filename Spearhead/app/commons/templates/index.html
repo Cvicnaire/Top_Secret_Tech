@@ -3,25 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Site</title>
-    
+    <title>{% block title %}Test Site{% endblock %}</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header, footer {
+            background-color: #f0f0f0; /* Light grey */
+            padding: 10px;
+            text-align: center;
+        }
+
+        #navigation {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #navigation li {
+            display: inline;
+        }
+
+        #navigation a {
+            text-decoration: none;
+            color: white;
+            background-color: gray;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        #navigation a.active {
+            background-color: darkgray;
+        }
+
+        #navigation a:hover {
+            background-color: lightgray;
+        }
+
+        #content {
+            background-color: white;
+            padding: 20px;
+            min-height: 300px; /* Adjust as needed */
+        }
+
+        footer {
+            background-color: #f0f0f0; /* Light grey */
+            padding: 10px;
+            text-align: left;
+        }
+
+        h1 {
+            color: gray;
+            font-size: 2em;
+            margin: 0;
+            text-align: left;
+        }
+
+        h2 {
+            color: darkgrey;
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Data Helix</h1>
-        <h2> A Biological Data Analysis and Management Platform<h2>
-
-        <nav>
-            <ul id="navigation">
-                {% for item in navigation %}
-                    <li>
-                        <a href="{{ url_for(item.endpoint) }}" class="{{ 'active' if request.endpoint == item.endpoint else '' }}">
-                            {{ item.name }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </nav>
+        <h1>Data Helix Hub</h1>
+        <h2>A Biological Data Analysis and Management Platform</h2>
+        {% include 'navbar.html' %}
     </header>
 
     <div id="content">
@@ -29,5 +83,8 @@
         <!-- Child templates will insert content here -->
         {% endblock %}
     </div>
+    <footer>
+        &copy; 2024 Data Helix Hub. All rights reserved.
+    </footer>
 </body>
 </html>

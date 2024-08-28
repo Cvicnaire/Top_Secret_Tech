@@ -18,8 +18,8 @@ web_blueprint = Blueprint("web", __name__)
 def home():
     navigation = [
         {'name': 'mission statement', 'endpoint': 'web.base'},
-        {'name': 'form', 'endpoint': 'web.form'},
-        {'name': 'browsing', 'endpoint': 'web.browse'}
+        {'name': 'form', 'endpoint': 'web.form'}
+        
     ]
     return render_template('index.html', navigation=navigation)
 
@@ -36,10 +36,3 @@ def form():
         flash('Form Submitted Successfully', 'success')
         return redirect(url_for('web_blueprint.form'))  # Using the blueprint name explicitly
     return render_template('workflow_forms.html', form=form)
-
-# route to browse result files
-@web_blueprint.route('/form')
-    def browsing():
-    
-
-# We need to create 

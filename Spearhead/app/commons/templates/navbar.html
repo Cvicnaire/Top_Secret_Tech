@@ -1,0 +1,11 @@
+<nav>
+    <ul id="navigation">
+        {% for item in navigation %}
+            <li>
+                <a href="{{ url_for(item.endpoint) }}" class="{% if request.endpoint == item.endpoint %}active{% endif %}">
+                    {{ item.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
